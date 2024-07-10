@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+</head>
+
+<body>
+    <% if(locals.user.username) { %>
+      <div class="container header">
+        <a href="/" class="newPostBtn" style="background-color: #2ecc71;">Home page</a>
+        <div class="top_search">
+          <form action="/search" method="post" class="search-form">
+            <input type="text" id="inputsearch" name="search" placeholder="search">
+            <button type="button" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+        <div class="forUser">
+          <!-- <a href="/profile" > -->
+           <a href="/profile" class="find"> <img class="avatar" src="<%= user.avatar %>" alt="" onclick=""></a>
+          <!-- </a> -->
+          <a href="/notify" class="a" ><i class="fa fa-bell"></i></a>
+        </div>
+        
+      </div>
+    <% } else { %>
+      <div class="container header">
+        <a href="/" class="newPostBtn a" style="background-color: #2ecc71;">Home page</a>
+        <div class="top_search">
+        <form action="/search" method="post" class="search-form">
+          <input type="text" id="inputsearch" name="search" placeholder="search">
+          <button type="button" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        </div>
+        <div class="forUser">
+          <a href="/login" class="newPostBtn a" style="background-color: #c2225d;">Login</a>
+          <a href="/sign-in" class="newPostBtn a" style="background-color: #138785;">Create one</a>
+        </div>
+      </div>   
+    <% } %>

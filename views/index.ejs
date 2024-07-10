@@ -1,0 +1,65 @@
+<%- include("hearder.ejs") %>
+<div class="container">
+  <h1>Blog Community</h1>
+  <% if(key === 'no'){ %>
+    <ul id="postsList">
+      <% posts.forEach(post => { %>
+        <li>
+          <h2><%= post.title %></h2>
+          <small><%= post.postsdate %></small>
+          <p><%= post.contentposts %></p>
+          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else if(key === 'user'){ %>
+    <ul id="postsList">
+      <% posts.forEach(post => { %>
+        <li>
+          <h2><%= post.title %></h2>
+          <small><%= post.postsdate %></small>
+          <p><%= post.contentposts %></p>
+          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else if(key === 'bloger'){ %>
+    <a class="a newPostBtn" href="/new">New Post</a> 
+    <ul id="postsList">
+      <% posts.forEach(post => { %>
+        <li>
+          <h2><%= post.title %></h2>
+          <small><%= post.postsdate %></small>
+          <p><%= post.contentposts %></p>
+          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <a class="a edit" href="/edit/<%= post.id %>">Edit</a>
+          <a class="a delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else if(key === 'admin'){ %>
+    <a class="newPostBtn a" href="/new">New Post</a> 
+    <ul id="postsList">
+      <% posts.forEach(post => { %>
+        <li>
+          <h2><%= post.title %></h2>
+          <small><%= post.postsdate %></small>
+          <p><%= post.contentposts %></p>
+          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <a class="a delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <h1>Error</h1>
+  <% } %>
+</div>
+
+</body>
+<script>
+  document.getElementById('search').onclick = function() {
+      document.forms[0].submit();  // Gửi biểu mẫu đầu tiên trên trang
+  };
+</script>
+
+</html>

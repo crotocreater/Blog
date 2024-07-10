@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Blog Community</h1>
+        <p>Welcome to the community</p>
+    <% if(locals.key){ %>
+        <form id="editForm" action="/login/user" method="post">
+            <input type="text" name="username" placeholder="User Name" required>
+            <input type="password" name="passwork" placeholder="Password" required>
+            <button class="full-width" type="submit"><%= submit %></button>
+        </form>
+    <% }else{ %>
+        <form id="editForm" action="/sign-in/user" method="post">
+            <input type="text" name="username" placeholder="User Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="passwork" placeholder="Passwork" required>
+            <button class="full-width" type="submit"><%= submit %></button>
+        </form>
+    <% } %>
+    </div>
+</body>
+</html>
