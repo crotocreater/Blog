@@ -41,17 +41,10 @@ trạng thái gồm: no, user, bloger, admin
 
 
 
-    <% if(key = 'user'){ %>
-        
-    <% }else if(key =  'bloger') %>
+          <a class="a edit" href="/edit/<%= post.id %>"><i class="fa-regular fa-thumbs-up"></i></a>
+          <a class="a delete" href="/api/posts/delete/<%= post.id %>"><i class="fa-regular fa-comment"></i> </a>
 
-    <% }else if( key = 'admin'){ %>
-        
-    <% } %>
-
-
-
-
+finish fontend
 admin: quản lý thành viên
        quản lý blog
        quản lý bình luận '
@@ -65,4 +58,39 @@ bloger: quản lý bài viết của tôi
 user: trở thành bloger 
       nhật kí hoạt động 
       setting 
-      
+
+
+làm thêm về backend
+admin: quản lý thành viên
+       quản lý blog
+       quản lý bình luận '
+       lịch sử hoạt động 
+       setting
+
+bloger: quản lý bài viết của tôi 
+        nhật kí hoạt động 
+        setting 
+
+user: trở thành bloger 
+      nhật kí hoạt động 
+      setting 
+
+
+thanh dẫn đến  tài khoản tác giả
+comment 
+like dislike 
+báo cáo 
+xóa ẩn bình luận 
+các tính năng riêng tư
+
+
+
+bổ xung cookie session 
+bổ xung login logout
+làm setting cho tài khoản 
+làm thông báo 
+
+
+
+một trang cá nhân của một tác giả thì gồm 
+

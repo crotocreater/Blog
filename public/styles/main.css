@@ -270,3 +270,29 @@ a.delete:hover {
   color: #fff;
 }
 
+.setting{
+  width: 80px;
+  height: 30px;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+}
+
+.night-mode {
+  background-color: #000;
+  color: #fff;
+}
+.day-mode {
+  background-color: #fff;
+  color: #000000;
+}
+
+.btnnight{
+  background-color: #000;
+}
+
+.cmt-like{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

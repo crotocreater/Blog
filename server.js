@@ -3,16 +3,16 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
 import bcrypt, { hash } from 'bcrypt';
+import env from 'dotenv';
+
+import config from "./src/config/configengine.js";
+
 
 const app = express();
 const port = 8080;
 const saltRounds = 10;
 
-app.use(express.static("public"));
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
+config(app)
 
 // default app
 var status = 'no';
@@ -164,11 +164,10 @@ app.get('/logout', (req, res)=>{
 // profile 
 app.get('/profile', async (req, res)=>{
   try {
-
     if(status === "no"){
       res.redirect('/');
     }else{
-      res.status(200).render('user.ejs', {key: status, user});
+      res.status(200).render('user.ejs', {key: status, user, title: "My Profile"});
     }
   } catch (error) {
     console.log(error.message);
@@ -177,13 +176,31 @@ app.get('/profile', async (req, res)=>{
 });
 
 
+// edit profile
+app.get("/editProfile/:id", async (req, res)=>{
+  let id = parseInt(req.params.id);
+  try {
+    if(status !== 'no'){
+      const dataUser = db.query("select * from usersaccount  where id = $1 ", [id]);
+      console.log((await dataUser).rows);
+      res.render('user/editProfile.ejs', { user: (await dataUser).rows[0], title: "Edit profile"});
+    }else{
+      res.redirect('/login');
+    }
+
+  } catch (err) {
+    console.log(err);
+    res.status(404).render('err/404.ejs');
+  }
+})
 
 // notifi
 app.get('/notify', async (req, res)=>{
   try {
-    res.status(200).render('notify.ejs', {key: status,user});
+    res.status(200).render('user/notify.ejs', {key: status,user, title:"Notify"});
   } catch (error) {
-    
+    console.log(error);
+    res.status(404).render("err/404.ejs");
   }
 });
 
@@ -204,7 +221,7 @@ app.post('/search', async (req, res) => {
     const data = await db.query("SELECT * FROM postscontent WHERE title LIKE $1", [searchQuery]); // Sử dụng $1 cho tham số
 
     if (data.rows.length > 0) {
-      res.render("index.ejs", { posts: data.rows, key: status, user });
+      res.render("index.ejs", { posts: data.rows, key: status, user, title:"Search" });
     } else {
       res.render('err/404.ejs');
     }
@@ -221,8 +238,20 @@ app.post('/search', async (req, res) => {
 app.get("/", async (req, res) => {
   try {
     var response = db.query("select * from postscontent");
-    res.render("index.ejs", { posts: (await response).rows, key: status, user});
+    res.render("index.ejs", { posts: (await response).rows, key: status, user, title: "Blog"});
   } catch (error) {
+    res.status(500).json({ message: "Error fetching posts" });
+  }
+});
+
+app.get("/", async (req, res) => {
+  try {
+
+    let id = parseInt(req.query.id);
+    let response = db.query("select * from postscontent where id = $1",[id]);
+    res.render("index.ejs", { posts: (await response).rows, key: status, user, title: "Blog"});
+  } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error fetching posts" });
   }
 });
@@ -230,15 +259,14 @@ app.get("/", async (req, res) => {
 
 
 
-
-app.get("/", async (req, res) => {
+app.get("/posts/:id", async (req, res) => {
   try {
 
-    let id = parseInt(req.query.id);
-    let resp = db.query("select * from postscontent where id = $1",[id]);
-    console.log(resp);
-    res.render("index.ejs", { posts: (await resp).rows });
+    let id = parseInt(req.params.id);
+    let response = db.query("select * from postscontent where id = $1",[id]);
+    res.render("index.ejs", { posts: (await response).rows, key: status, user, title: "Blog"});
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error fetching posts" });
   }
 });
@@ -329,6 +357,24 @@ app.get("/api/posts/delete/:id", async (req, res) => {
 
 
 
+
+
+app.get('/author/:id', async (req, res)=>{
+  try {
+    const id = parseInt(req.params.id);
+    const data = db.query('select * from usersaccount where id = $1', [id]);
+    const posts = db.query('SELECT * FROM postscontent where userid = $1 ORDER BY postsdate desc', [id]);
+    let author = (await data).rows[0];
+    if((await data).rows.length > 0){
+      res.render('account.ejs', {post: (await posts).rows, author, key: status, user, title: "Author Account"});
+    }else{
+      res.render('err/404.ejs');
+    }
+  } catch (error) {
+    console.log(error);
+    res.render('err/404.ejs');
+  }
+});
 
 
 

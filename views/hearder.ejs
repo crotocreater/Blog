@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog</title>
+  <title><%= title %></title>
   <link rel="stylesheet" href="/styles/main.css">
   
   <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
@@ -43,3 +44,21 @@
         </div>
       </div>   
     <% } %>
+
+    <div class="setting">
+      <button onclick="night()" id="night"><i class="fa-solid fa-moon"></i></button>
+      <button onclick="day()" id="day"><i class="fa-solid fa-sun"></i></button>
+    </div>
+    <script>
+        function night() {
+            document.body.classList.add('night-mode');
+            document.getElementsByClassName('.container').classList('.btnnight')
+            document.body.classList.remove('day-mode');
+        }
+
+        function day() {
+            document.body.classList.add('day-mode');
+            document.getElementById('#day').classList.add('daybtn')
+            document.body.classList.remove('night-mode');
+        }
+    </script>

@@ -3,44 +3,44 @@
     <div class="useravatar">
         <img src="<%= user.avatar %>" alt="">
         <div class="btnAvatar">
-            <a href="" class="a edit">Edit avatar</a>
+            <input type="file" name="avatar" placeholder="Edit avatar" class="a edit"></input>
             <a href="/logout" class="a delete">Logout</a> 
         </div>
     </div>
-    <h1 class="btnAvatar"><%= user.username %> <a href="" class="a editName"><i class="fa-solid fa-bars"></i></a></h1>
+    <h1 class="btnAvatar"><%= user.username %> <a href="/editProfile/<%=user.id%>" class="a editName"><i class="fa-solid fa-bars"></i></a></h1>
 
     <% if(key === 'user'){ %>
         <a href="" class="a b"><button class="full-width">
            <span>Trở thành bloger </span> <span><i
             class="fa-solid fa-caret-right"></i></span>
         </button></a>
-        <a href="" class="a b"><button class="full-width">
+        <a href="/user/history/<%= user.id %>" class="a b"><button class="full-width">
             <span>Nhật kí hoạt động </span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
     <% }else if(key === 'bloger'){ %>
-        <a href="" class="a b"><button class="full-width b">
+        <a href="/user/myBlog/<%= user.id %>" class="a b"><button class="full-width b">
             <span>Quản lý Blog của tôi</span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
-         <a href="" class="a b"><button class="full-width b">
+         <a href="/user/history/<%= user.id %>" class="a b"><button class="full-width b">
             <span>Nhật kí hoạt động</span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
     <% }else if(key === 'admin'){ %>
-        <a href="" class="a b"><button class="full-width c">
+        <a href="/admin/memberManager" class="a b"><button class="full-width c">
             <span>Quản lý thành viên</span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
-         <a href="" class="a b"><button class="full-width c">
+         <a href="/admin/blogManager" class="a b"><button class="full-width c">
             <span>Quản lý blog</span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
-         <a href="" class="a b"><button class="full-width c">
+         <a href="/admin/commentManager" class="a b"><button class="full-width c">
             <span>Quản lý bình luận</span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>
-         <a href="" class="a b"><button class="full-width c">
+         <a href="/user/history/<%= user.id %>" class="a b"><button class="full-width c">
             <span>Lịch sử hoạt động </span> <span><i
              class="fa-solid fa-caret-right"></i></span>
          </button></a>

@@ -8,7 +8,12 @@
           <h2><%= post.title %></h2>
           <small><%= post.postsdate %></small>
           <p><%= post.contentposts %></p>
-          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <small><a href="/author/<%=post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <span class="cmt-like">
+            <p id="comment" onclick="isComment()"><i class="fa-solid fa-comment"></i></p>
+            <p id="like" onclick="isLike()"><i class="fa-regular fa-thumbs-up"></i></p>
+            <p id="dislike" onclick="dislike()"><i class="fa-regular fa-thumbs-down"></i></p>
+          </span>
         </li>
       <% }); %>
     </ul>
@@ -19,7 +24,12 @@
           <h2><%= post.title %></h2>
           <small><%= post.postsdate %></small>
           <p><%= post.contentposts %></p>
-          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <small><a href="/author/<%=post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <span class="cmt-like">
+            <p id="comment" onclick="isComment()"><i class="fa-solid fa-comment"></i></p>
+            <p id="like" onclick="isLike()"><i class="fa-regular fa-thumbs-up"></i></p>
+            <p id="dislike" onclick="dislike()"><i class="fa-regular fa-thumbs-down"></i></p>
+          </span>
         </li>
       <% }); %>
     </ul>
@@ -31,9 +41,15 @@
           <h2><%= post.title %></h2>
           <small><%= post.postsdate %></small>
           <p><%= post.contentposts %></p>
-          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
-          <a class="a edit" href="/edit/<%= post.id %>">Edit</a>
-          <a class="a delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+          <small><a href="/author/<%=post.userid%>" class="author">By: <%= post.atthor %></a></small>
+
+          <a class="a edit" href="/edit/<%= post.id %>"><i class="fa-regular fa-thumbs-up"></i></a>
+          <a class="a delete" href="/api/posts/delete/<%= post.id %>"><i class="fa-regular fa-comment"></i> </a>
+          <span class="cmt-like">
+            <p id="comment" onclick="isComment()"><i class="fa-solid fa-comment"></i></p>
+            <p id="like" onclick="isLike()"><i class="fa-regular fa-thumbs-up"></i></p>
+            <p id="dislike" onclick="dislike()"><i class="fa-regular fa-thumbs-down"></i></p>
+          </span>
         </li>
       <% }); %>
     </ul>
@@ -45,8 +61,13 @@
           <h2><%= post.title %></h2>
           <small><%= post.postsdate %></small>
           <p><%= post.contentposts %></p>
-          <small><a href="/author/<%post.userid%>" class="author">By: <%= post.atthor %></a></small>
-          <a class="a delete" href="/api/posts/delete/<%= post.id %>">Delete</a>
+          <small><a href="/author/<%=post.userid%>" class="author">By: <%= post.atthor %></a></small>
+          <span class="cmt-like">
+            <p id="comment" onclick="isComment()"><i class="fa-solid fa-comment"></i></p>
+            <p id="like" onclick="isLike()"><i class="fa-regular fa-thumbs-up"></i></p>
+            <p id="dislike" onclick="dislike()"><i class="fa-regular fa-thumbs-down"></i></p>
+          </span>
+          <a class="a delete" href="/api/posts/delete/<%= post.id %>">Delete</a>          
         </li>
       <% }); %>
     </ul>

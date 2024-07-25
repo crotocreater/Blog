@@ -1,0 +1,75 @@
+<%- include("hearder.ejs") %>
+<style>
+    .authorAccount{
+        display: flex;
+        flex-direction: row;
+        gap: 40 px;
+    }
+    .inforAvatar{
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .inforAvatar img{
+        width: 200px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .content{
+        width: 64%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .keyContent{
+        width: 90%;
+        overflow: hidden;
+    }
+    .postContent{
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: scroll;
+    }
+</style>
+<div class="container authorAccount">
+    <div class="inforAvatar">
+        <img src="<%= author.avatar %>" alt="Author Avatar">
+        <h1 class="btnAvatar"><%= author.username %> 
+            <a href="" class="a editName">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </h1>
+    </div>
+    <div class="content">
+        <% if (post && post.length > 0) { %>
+            <% post.forEach(p => { %>
+                <div class="postContent" onclick="submit('<%= p.id %>')">
+                    <h2 class="keyContent"><%= p.title %></h2>
+                    <small><%= p.postsdate %></small>
+                    <p class="keyContent"><%= p.contentposts %></p>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <h2 class="keyContent">Tài khoản không có Blog nào mới đăng</h2>
+        <% } %>
+    </div>
+</div>
+</body>
+<script>
+    function submit(id) {
+        window.location.href = `/posts/${id}`;
+    }
+</script>
+</html>

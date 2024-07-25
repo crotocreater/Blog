@@ -1,0 +1,116 @@
+
+#container{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(189, 82, 125);
+    gap: 1em;
+    border: 2px solid burlywood;
+    border-radius: 20px;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 40%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+    border: 2px solid cadetblue;
+    border-radius: 20px
+}
+.comment label{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+.comment input{
+    width: 80%;
+    height: 8%;
+    border: 2px solid darkgoldenrod;
+    padding: 0px 15px ;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
+.comment .btn{
+    width: 25%;
+    height: 50px;
+    background-color: aquamarine;
+    color: coral;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 2px solid darkgoldenrod;
+    border-radius: 20px;
+}
+.content-comment{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: calc(90% - 20px);
+    background-color: cadetblue;
+    border: 2px solid burlywood;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    border-radius: 20px;
+    gap: 2em;
+}
+.content-comment .userComment{
+    width: 80%;
+    height: calc(fit-content + 10%);
+    display: flex;
+    z-index: 10;
+    flex-direction: column;
+    border: 2px solid burlywood;
+    border-radius: 30px;
+    padding:10px 20px;
+}
+.userComment .imgAvata{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: 30px;
+    gap: 1em;
+    align-items: center;
+    color: white;
+    font-family: serif;
+    font-weight: 400;
+}
+.avatar{
+    width: 30px;
+    height: 30px;
+    border: 2px solid brown;
+    border-radius: 50%;
+}
+.userComment .moreSection{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 1em;
+}
+.headerAvatar{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: 40px;
+    gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 2px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.image{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 70%;
+}
